@@ -55,6 +55,9 @@ public class FXMLDocumentController implements Initializable {
     private TextField txProjectPrior;
 
     @FXML
+    private TextField txProjectAddress;
+
+    @FXML
     private TextField txProjectExtra;
 
     @FXML
@@ -136,6 +139,7 @@ public class FXMLDocumentController implements Initializable {
         ProjectInfo tx = tableProjects.getItems().get(i);
         txProjectName.setText(tx.getProjectName());
         txProjectPrior.setText(tx.getProjectPrior());
+        txProjectAddress.setText(tx.getProjectAddress());
         txProjectExtra.setText(tx.getProjectExtra());
         txProjectDetails.setText(tx.getProjectDetails());
         //kijelölt projekthez tartozó feladatok lekérdezése adatbázisból
@@ -146,7 +150,11 @@ public class FXMLDocumentController implements Initializable {
     //task adatok kiírása
     private void textTaskInfo(int i) {
         if (i == -1) {
-            return;
+            //Amikor olyan projekt kerül kijelölésre, amihez nem tartozik feladat, a feladat adatok mezői törlődnek
+            txTaskName.clear();
+            txTaskDate.clear();
+            txTaskExtra.clear();
+            txTaskDetails.clear();
         }
         TaskInfo tx = tableTasks.getItems().get(i);
         txTaskName.setText(tx.getTaskName());
@@ -167,7 +175,7 @@ public class FXMLDocumentController implements Initializable {
         if (selectedIndex > -1) {//módosítás esetén
             controller.setProject(tableProjects.getItems().get(selectedIndex));
         } else {//új létrehozásakor
-            controller.setProject(new ProjectInfo(0, "", "", "", "1", ""));
+            controller.setProject(new ProjectInfo(0, "", "", "", "", "1", ""));
         }
         controller.setDatabase(database);
         //új ablak megnyitása

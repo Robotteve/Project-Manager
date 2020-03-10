@@ -14,14 +14,16 @@ public class ProjectInfo {
     private int projectID;
     private String projectName;
     private String projectClient;
+    private String projectAddress;
     private String projectDetails;
     private String projectPrior;
     private String projectExtra;
 
-    public ProjectInfo(int projectID, String projectName, String projectClient, String projectDetails, String projectPrior, String projectExtra) {
+    public ProjectInfo(int projectID, String projectName, String projectClient, String projectAddress, String projectDetails, String projectPrior, String projectExtra) {
         this.projectID = projectID;
         this.projectName = projectName;
         this.projectClient = projectClient;
+        this.projectAddress = projectAddress;
         this.projectDetails = projectDetails;
         this.projectPrior = projectPrior;
         this.projectExtra = projectExtra;
@@ -37,6 +39,10 @@ public class ProjectInfo {
 
     public String getProjectClient() {
         return projectClient;
+    }
+
+    public String getProjectAddress() {
+        return projectAddress;
     }
 
     public String getProjectDetails() {
@@ -63,6 +69,10 @@ public class ProjectInfo {
         this.projectClient = projectClient;
     }
 
+    public void setProjectAddress(String projectAddress) {
+        this.projectAddress = projectAddress;
+    }
+
     public void setProjectDetails(String projectDetails) {
         this.projectDetails = projectDetails;
     }
@@ -75,5 +85,4 @@ public class ProjectInfo {
         this.projectExtra = projectExtra;
     }
 
-    
 }

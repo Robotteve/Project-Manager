@@ -28,7 +28,7 @@ public class LoadFromDataBase {
     //Projektek adatainak lekérdezése adatbázisból --> ProjectInfo osztály
     public void loadProjects(ObservableList<ProjectInfo> list) {
         /*SELECT clientName, projectName FROM project JOIN client ON project.clientID=client.clientID*/
-        String sqlCommand = "SELECT projectID, projectName, clientName, projectDetails, projectPrior, projectExtra "
+        String sqlCommand = "SELECT projectID, projectName, clientName, clientAddress, projectDetails, projectPrior, projectExtra "
                 + "FROM project JOIN client ON project.clientID=client.clientID ORDER BY clientName;";
         try (Connection connect = DriverManager.getConnection(dataBaseUrl2, datBaseUser, dataBasePass);
                 PreparedStatement command = connect.prepareStatement(sqlCommand)) {
@@ -40,6 +40,7 @@ public class LoadFromDataBase {
                         result.getInt("projectID"),
                         result.getString("projectName"),
                         result.getString("clientName"),
+                        result.getString("clientAddress"),
                         result.getString("projectDetails"),
                         result.getString("projectPrior"),
                         result.getString("projectExtra")));
